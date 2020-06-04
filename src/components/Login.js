@@ -127,4 +127,4 @@ function mapStateToProps(state) {
     isAuthenticated: state.auth.isAuthenticated
   };
 }
-export default connect(mapStateToProps)(Login);
+export default withStyles(styles)(connect(mapStateToProps)(Login));

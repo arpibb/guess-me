@@ -1,11 +1,9 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
-import dotenv from 'dotenv';
-require('dotenv').config()
 
 const firebaseConfig = {
-  apiKey: process.env.API_KEY,
+  apiKey: "AIzaSyCWFUrtuda0YyBH8gYIYrVPUin-4P1ic6w",
   authDomain: process.env.AUTH_DOMAIN,
   databaseURL: process.env.DATABASE_URL,
   projectId: "guess-me-426ec",
@@ -15,6 +13,8 @@ const firebaseConfig = {
   measurementId: process.env.MEASUREMENT_ID
   
 };
+
+console.log(firebaseConfig.apiKey)
 
 export const myFirebase = firebase.initializeApp(firebaseConfig);
 const baseDb = myFirebase.firestore();
