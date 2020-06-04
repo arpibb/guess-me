@@ -27,3 +27,71 @@ const loginError = () => {
     type: LOGIN_FAILURE
   };
 };
+
+const requestLogout = () => {
+  return {
+    type: LOGOUT_REQUEST
+  };
+};
+
+const receiveLogout = user => {
+  return {
+    type: LOGOUT_SUCCESS
+    };
+};
+
+const logoutError = () => {
+  return {
+    type: LOGOUT_FAILURE
+  };
+};
+
+const verifyRequest = () => {
+  return {
+    type: VERIFY_REQUEST
+  };
+};
+
+const verifySuccess = () => {
+  return {
+    type: VERIFY_SUCCESS
+  };
+};
+
+export const loginUser = (email, password) => dispatch => {
+  dispatch(requestLogin());
+  myFirebase
+    .auth()
+    .signInWithEmailAndPassword(email, password)
+    .then(user => {
+      dispatch(receiveLogin(user));
+    })
+    .catch(error => {
+      console.log(error)
+      dispatch(loginError());
+    });
+};
+
+export const logoutUser = () => dispatch => {
+  dispatch(requestLogout());
+  myFirebase
+    .auth()
+    .signOut()
+    .then(() => {
+      dispatch(receiveLogout());
+    })
+    .catch(error => {
+      console.log(error)
+      dispatch(logoutError());
+    });
+};
+
+export const verifyAuth = () => dispatch => {
+  dispatch(verifyRequest());
+  myFirebase.auth().onAuthStateChanged(user => {
+    if (user !== null) {
+      dispatch(receiveLogin(user));
+    }
+    dispatch(verifySuccess());
+  });
+};
