@@ -3,7 +3,7 @@ import "firebase/auth";
 import "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCWFUrtuda0YyBH8gYIYrVPUin-4P1ic6w",
+  apiKey: process.env.API_KEY,
   authDomain: process.env.AUTH_DOMAIN,
   databaseURL: process.env.DATABASE_URL,
   projectId: "guess-me-426ec",
