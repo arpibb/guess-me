@@ -3,7 +3,7 @@ import "firebase/auth";
 import "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: process.env.API_KEY,
+  apiKey: `${process.env.API_KEY}`,
   authDomain: process.env.AUTH_DOMAIN,
   databaseURL: process.env.DATABASE_URL,
   projectId: "guess-me-426ec",
@@ -11,11 +11,14 @@ const firebaseConfig = {
   messagingSenderId: process.env.MESSAGING_SENDER_ID,
   appId: process.env.APP_ID,
   measurementId: process.env.MEASUREMENT_ID
-  
 };
 
-console.log(firebaseConfig.apiKey)
+
 
 export const myFirebase = firebase.initializeApp(firebaseConfig);
 const baseDb = myFirebase.firestore();
 export const db = baseDb;
+console.log(firebaseConfig.apiKey)
+console.log(process.env.NODE_ENV)
+
+export default firebaseConfig
